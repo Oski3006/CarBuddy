@@ -3,7 +3,10 @@ from .forms import RegisterForm, PostForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User, Group
-from .models import Post
+from .models import Post, Samochody
+from .forms import SamochodyForm
+from django.shortcuts import render
+
 
 
 @login_required(login_url="/login")
@@ -63,3 +66,27 @@ def sign_up(request):
         form = RegisterForm()
 
     return render(request, 'registration/sign_up.html', {"form": form})
+
+def dodaj_samochod(request):
+    my_models = Samochody.objects.filter(author=request.user)
+    if request.method == 'POST':
+        form = SamochodyForm(request.POST)
+        if form.is_valid():
+            samochod = form.save(commit=False)
+            samochod.author = request.user
+            samochod.save()
+            return redirect('dodaj_samochod')
+        else:
+            print(form.errors)
+    else:
+        form = SamochodyForm()
+    return render(request, 'main/dodaj_samochod.html', {'form': form, 'my_models': my_models})
+
+
+def samochody_uzytkownika(request):
+    samochody = Samochody.objects.filter(author=request.user)
+    return render(request, 'main/dziennik.html', {'samochody': samochody})
+
+
+
+

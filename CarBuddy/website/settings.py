@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
+    'rest_framework',
+    'requests',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -83,11 +85,11 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
+        'NAME': 'railway',  
         'USER': 'postgres',
-        'PASSWORD': 'PH8slhozVDpVHWN1yVli',
-        'HOST': 'containers-us-west-138.railway.app',
-        'PORT': '6805',
+        'PASSWORD': 'SwpqjO3cGWs0Np82Xjve',
+        'HOST': 'containers-us-west-182.railway.app',
+        'PORT': '6333',
     }
 }
 
