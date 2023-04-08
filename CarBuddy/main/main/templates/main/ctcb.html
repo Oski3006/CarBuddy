@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %} {% block title %}Co to CarBuddy?{% endblock %} 
+{% load crispy_forms_tags %} {% block content %}
+<div>
+    <p><h1>Co to jest tak naprawę CarBuddy?</h1></p>
+    <p>W trakcie eksploatacji samochodu należy liczyć się także z innymi kosztami - napraw, przeglądów samochodowych, ubezpieczeń OC/AC/NW i innych. Dzięki CarBuddy oprócz optymalizacji budżetu przeznaczonego na płyny napędowe do samochodu, możemy również skompletować wszelkie dane dotyczące eksploatacji naszego pojazdu. Tego typu informacje mogą być przydatne na przykład w trakcie sprzedawania samochodu - w prosty sposób możemy zaprezentować nabywcy, ile realnie wyniesie go korzystanie z danego auta. CarBuddy pozwala nam na zapisanie kosztów paliwa, ale nie tylko. Równie ważne są inne czynniki , które możemy zapisać w aplikacji. W programie możemy ponadto wygenerować raporty z wybranych okresów eksploatacji pojazdu, co może być przydatne w trakcie porównywania kosztów w sezonie letnim oraz zimowym. </p>
+
+<p><h2> Strona główna </h2></p>
+<ul>
+  <li>Na stronie głównej użytkownik może zobaczyć podsumowanie swojego dziennika samochodowego, takie jak łączny dystans przejechany, zużycie paliwa, średnie zużycie paliwa i koszt podróży.</li>
+    <li>Użytkownik może wybrać, czy chce wyświetlić podsumowanie za miesiąc, rok lub cały okres, w którym prowadził dziennik samochodowy.</li>
+</ul>
+<p><h2>Dodawanie przejazdów:</h2></p>
+<ul>
+    <li> Użytkownik może dodać nowy przejazd do swojego dziennika samochodowego, podając informacje, takie jak data, dystans, zużycie paliwa, cena paliwa i koszt podróży.</li>
+    <li> Aplikacja oblicza średnie zużycie paliwa na 100 km oraz koszt przejechania 1 km.</li>
+    <li> Użytkownik może również dodać notatkę do przejazdu, opisując cel lub inne szczegóły.</li>
+</ul>
+<p><h2>Wyświetlanie przejazdów:</h2></p>
+<ul>
+<li>Użytkownik może przeglądać swoje dotychczasowe przejazdy, sortując je według daty, dystansu, kosztu lub zużycia paliwa. </li>
+    <li>Użytkownik może filtrować przejazdy według okresu czasu, od/do daty oraz według notatki.</li>
+</ul>
+<p><h2>Statystyki:</h2></p>
+<ul>
+<li> Aplikacja wyświetla statystyki dotyczące dziennika samochodowego, takie jak łączny dystans przejechany, zużycie paliwa, średnie zużycie paliwa i koszt podróży.</li>
+<li> Użytkownik może wybrać okres, dla którego chce wyświetlić statystyki. </li>
+</ul>
+<p><h2>Edycja i usuwanie przejazdów:</h2></p>
+<ul>
+<li> Użytkownik może edytować lub usunąć swoje przejazdy.</li>
+</ul>
+<p><h2>Autoryzacja i autentykacja:</h2></p>
+<ul>
+<li> Aplikacja umożliwia rejestrację i logowanie użytkowników.</li>
+<li> Tylko zalogowani użytkownicy mogą dodawać, edytować i usuwać przejazdy oraz przeglądać swoje statystyki.</li>
+</ul>
+<p><h2>Powiadomienia e-mail:</h2></p>
+<ul>
+<li> Użytkownik może włączyć opcję powiadomień e-mail odnośnie kończącego się terminu przeglądu technicznego samochodu oraz kończącego się ubezpieczenia. </li>
+<li> Użytkownik sam może dostosować czas przypomnienia, czy ma to nastąpić np. na początku miesiąca kończącego się ubezpieczenia/przeglądu, równy miesiąc wcześniej, 5 tygodni wcześniej i tak dalej.</li>
+</ul>
+
+</div>
+{% endblock %}
