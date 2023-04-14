@@ -3,8 +3,9 @@ from .forms import RegisterForm, PostForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User, Group
-from .models import Post, Samochody
+from .models import Post, Samochody, Tankowania
 from .forms import SamochodyForm
+from .forms import TankowanieForm
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -83,6 +84,20 @@ def dodaj_samochod(request):
         form = SamochodyForm()
     return render(request, 'main/dodaj_samochod.html', {'form': form, 'my_models': my_models})
 
+def dodaj_tankowanie(request):
+    my_models = Tankowania.objects
+    if request.method == 'POST':
+        form = TankowanieForm(request.POST)
+        if form.is_valid():
+            tankowanie = form.save(commit=False)
+            tankowanie.save()
+            return redirect('dodaj_tankowanie')
+        else:
+            print(form.errors)
+    else:
+        form = TankowanieForm()
+    return render(request, 'main/dodaj_tankowanie.html', {'form': form, 'my_models': my_models})
+
 
 def samochody_uzytkownika(request):
     samochody = Samochody.objects.filter(author=request.user)
@@ -91,9 +106,6 @@ def samochody_uzytkownika(request):
 def ctcb(request):
     return render(request, 'main/ctcb.html')
 
-def usuwanie(request, id):
-   usuwanie = get_object_or_404(Samochody, id, author=request.user)
-   usuwanie.delete()
-   return render(request, 'main/dziennik.html', {'usuwanie': samochody_uzytkownika.samochody})
+
 
 

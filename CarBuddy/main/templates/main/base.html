@@ -22,10 +22,10 @@
               <a class="nav-link" href="/home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/create-post">Post</a>
+              <a class="nav-link" href="/dodaj_samochod">Dodaj samochód</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/dodaj_samochod">Dodaj samochód</a>
+              <a class="nav-link" href="/dodaj_tankowanie">Dodaj tankowanie</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/dziennik">Dziennik</a>
@@ -38,14 +38,12 @@
             <li class="nav-item">
               <a class="nav-link" href="/ctcb">Co to CarBuddy?</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/create-post">Jak to działa</a>
-          </ul>
+          </div>
+          {% endif %}
         </div>
         <div>
           <ul class="navbar-nav">
             {% if user.is_authenticated %}
-            <span class="navbar-text">Logged in as {{user.username}} | </span>
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
             </li>
@@ -55,8 +53,7 @@
             </li>
             {% endif %}
           </ul>
-        </div>
-        {% endif %}
+
       </div>
     </nav>
     <div class="container">{% block content %} {% endblock %}</div>

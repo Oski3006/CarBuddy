@@ -1,9 +1,7 @@
-{% extends 'main/base.html' %} {% block title %}Dodaj samochod{% endblock %} 
+{% extends "main/base.html" %}
+
+{% block title %}Post został usunięty{% endblock %}
+
 {% block content %}
-  <h2>Usuń samochód:</h2>
-  <form  method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-danger">USUŃ</button>
-  </form>
+<p>Twój samochód został usunięty</p>
 {% endblock %}
