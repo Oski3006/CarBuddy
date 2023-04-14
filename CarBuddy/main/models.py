@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 
 
 class Post(models.Model):
@@ -21,8 +21,7 @@ class Samochody(models.Model):
     rok_produkcji = models.IntegerField()
     nr_rejestracyjny = models.CharField(max_length=20)
     pojemność_silnika = models.IntegerField()
-    def get_absolute_url(self):
-       return reverse_lazy('usuwanie', args=[self.id])
+
 
 class Przebiegi(models.Model):
     id = models.AutoField(primary_key=True)

@@ -14,8 +14,7 @@
       <h1>{{ samochody.marka }} {{ samochody.model }} </h1>
       <li>Numer rejestracyjny: <b>{{ samochody.nr_rejestracyjny}}</b></li>
       <li>Rok Produkcji: <b>{{ samochody.rok_produkcji }}</b></li> 
-      <li>Pojemno"ść silnik:<b>{{ samochody.pojemność_silnika}}</b></li>
-      <p><a href= "{% url "usuwanie" samochody.id %}">Usuń Samochód</a></p>
+      <li>Pojemność silnik:<b>{{ samochody.pojemność_silnika}}</b></li>
     {% endfor %}
     
   </ul>

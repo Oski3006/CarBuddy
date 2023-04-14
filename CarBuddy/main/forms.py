@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Post
 from .models import Samochody
+from .models import Tankowania
 
 
 class RegisterForm(UserCreationForm):
@@ -29,3 +30,15 @@ class SamochodyForm(forms.ModelForm):
             'pojemność_silnika': 'Pojemność silnika',
             'rok_produkcji': 'Rok produkcji'
         }
+class TankowanieForm(forms.ModelForm):
+    class Meta:
+        model = Tankowania
+        fields = ['data', 'przebieg', 'ilość_paliwa','cena_za_litr','samochod']
+        labels = {
+            'data': 'Data',
+            'przebieg': 'Przebieg',
+            'ilość_paliwa': 'Ilość Paliwa',
+            'cena_za_litr': 'Cena za litr',
+            'samochod': 'Samochód'
+        }
+        
