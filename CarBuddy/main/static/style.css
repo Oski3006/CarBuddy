@@ -1,0 +1,136 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: 'Jura', sans-serif;
+	font-family: 'Montserrat', sans-serif;
+	background-color: #f7b42c;
+	background-image: linear-gradient(315deg, #f7b42c 0%, #fc575e 100%);
+}
+/* //nawigacja */
+div {
+	display: inline-block;
+}
+
+ul.nav.justify-content-center {
+	background-color: #333333bb;
+}
+
+.nav-link {
+	padding: 0 40px;
+	justify-content: center;
+	display: inline-block;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 1.5px;
+	line-height: 50px;
+}
+
+.nav-link:hover {
+	color: #8b3e87;
+}
+img {
+	border-radius: 5px;
+	left: 5px;
+	width: 230px;
+}
+/* //header */
+.header-img {
+	position: relative;
+	height: 250px;
+	width: 100%;
+	background-image: url('/static/header (3).jpg');
+	background-size: cover;
+	background-position: 0 30%;
+}
+.header-tekst {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+	text-align: center;
+	font-weight: lighter;
+}
+.header-bg {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(205, 224, 238, 0.2);
+}
+/* footer{
+    height: 500px;
+    line-height: 50px;
+    background-color: #333333bb;
+    color: #ddd;
+    text-align: center ;
+    font: size 15px;px;
+} */
+footer {
+	display: flex;
+	flex-direction: row; /* lub column, w zależności od preferencji */
+	justify-content: space-between; /* równomierne rozmieszczenie kolumn */
+	align-items: center; /* wyśrodkowanie w pionie */
+	background-color: #333333bb;
+	padding: 20px;
+	color: white;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+label {
+	font-size: 10px;
+	margin-bottom: 5px;
+}
+
+input,
+textarea {
+	padding: 5px;
+	font-size: 10px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	border: none;
+}
+
+button[type='submit'] {
+	padding: 5px 5px;
+	background-color: #4caf50;
+	color: #fff;
+	font-size: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+button[type='submit']:hover {
+	background-color: #3e8e41;
+}
+footer {
+	text-align: center; /* wyśrodkowanie stopki */
+	background-color: #b;
+	padding: 20px;
+}
+
+.column {
+	display: inline-block;
+	margin: 0 10px;
+	vertical-align: top; /* umiejscowienie elementów na górze */
+	width: calc(33.33% - 4px); /* szerokość kolumny (33.33% - 4px marginesu) */
+	box-sizing: border-box;
+}
+
+.column h3 {
+	font-size: 10px;
+	margin-bottom: 10px;
+}
+
+.column p {
+	font-size: 10px;
+	line-height: 1.5;
+	margin-bottom: 20px;
+}
