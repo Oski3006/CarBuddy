@@ -84,24 +84,32 @@ def dodaj_samochod(request):
         form = SamochodyForm()
     return render(request, 'main/dodaj_samochod.html', {'form': form, 'my_models': my_models})
 
-def dodaj_tankowanie(request):
-    my_models = Tankowania.objects
+def dodaj_tankowanie(request, samochod_id):
+    samochod = get_object_or_404(Samochody, id=samochod_id, author=request.user)
     if request.method == 'POST':
-        form = TankowanieForm(request.POST)
+        form = TankowanieForm(request.POST, user=request.user, initial={'samochod': samochod})
         if form.is_valid():
             tankowanie = form.save(commit=False)
             tankowanie.save()
-            return redirect('dodaj_tankowanie')
+            return redirect('dodaj_tankowanie', samochod_id=samochod_id)
         else:
             print(form.errors)
     else:
-        form = TankowanieForm()
-    return render(request, 'main/dodaj_tankowanie.html', {'form': form, 'my_models': my_models})
+        form = TankowanieForm(user=request.user, initial={'samochod': samochod})
+    return render(request, 'main/dodaj_tankowanie.html', {'form': form, 'samochod': samochod})
 
 
 def samochody_uzytkownika(request):
     samochody = Samochody.objects.filter(author=request.user)
-    return render(request, 'main/dziennik.html', {'samochody': samochody})
+    if request.method == 'POST':
+        samochod_id = request.POST.get('samochod')
+        if samochod_id:
+            tankowania = Tankowania.objects.filter(samochod__id=samochod_id)
+        else:
+            tankowania = Tankowania.objects.filter(samochod__in=samochody)
+    else:
+        tankowania = Tankowania.objects.filter(samochod__in=samochody)
+    return render(request, 'main/dziennik.html', {'samochody': samochody, 'tankowania': tankowania})
 
 def ctcb(request):
     return render(request, 'main/ctcb.html')
