@@ -8,13 +8,28 @@
 
 
 {% block content %}
-  <h1>Lista samochodów</h1>
+  <h3>Lista samochodów</h3>
   <ul>
-    {% for samochody in samochody %}
-      <h1>{{ samochody.marka }} {{ samochody.model }} </h1>
-      <li>Numer rejestracyjny: <b>{{ samochody.nr_rejestracyjny}}</b></li>
-      <li>Rok Produkcji: <b>{{ samochody.rok_produkcji }}</b></li> 
-      <li>Pojemność silnik:<b>{{ samochody.pojemność_silnika}}</b></li>
+    {% for samochod in samochody  %}
+      <h1>{{ samochod.marka }} {{ samochod.model }} </h1>
+      <li>Numer rejestracyjny: <b>{{ samochod.nr_rejestracyjny}}</b></li>
+      <li>Rok Produkcji: <b>{{ samochod.rok_produkcji }}</b></li> 
+      <li>Pojemność silnik:<b>{{ samochod.pojemność_silnika}}</b></li>
+      <hr style="border: 1px solid black; margin-top: 20px; margin-bottom: 20px;">
+      <h3>Tankowania:</h3><a href="{% url 'dodaj_tankowanie' samochod.id %}?next={{ request.path }}">dodaj tankowanie</a>
+        {% for tankowanie in tankowania %}
+          {% if tankowanie.samochod == samochod %}
+
+            <li>Data tankowania: <b>{{ tankowanie.data }}</b></li>
+            <li>Przebieg przy tankowaniu: <b>{{ tankowanie.przebieg }}</b></li>
+            <li>Ilość zatankowanego paliwa: <b>{{ tankowanie.ilość_paliwa }}</b></li>
+            <li>Cena za litr: <b>{{ tankowanie.cena_za_litr }}</b></li>
+          {% endif %}
+
+        {% empty %}
+          <li>Brak tankowań</li>
+        {% endfor %}
+        <hr style="border: 5px solid black; margin-top: 20px; margin-bottom: 20px;">
     {% endfor %}
     
   </ul>

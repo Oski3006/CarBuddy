@@ -10,5 +10,6 @@ urlpatterns = [
     path('dodaj_samochod', views.dodaj_samochod, name='dodaj_samochod'),
     path('dziennik',views.samochody_uzytkownika, name='dziennik'),
     path('ctcb',views.ctcb, name='ctcb'),
-    path('dodaj_tankowanie',views.dodaj_tankowanie, name='dodaj_tankowanie'),
+    #path('dodaj_tankowanie',views.dodaj_tankowanie, name='dodaj_tankowanie'),
+    path('dodaj_tankowanie/<int:samochod_id>/', views.dodaj_tankowanie, name='dodaj_tankowanie'),
 ]

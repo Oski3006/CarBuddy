@@ -21,6 +21,8 @@ class Samochody(models.Model):
     rok_produkcji = models.IntegerField()
     nr_rejestracyjny = models.CharField(max_length=20)
     pojemność_silnika = models.IntegerField()
+    def __str__(self):
+        return self.marka + " " + self.model + " (" + self.nr_rejestracyjny + ") "
 
 
 class Przebiegi(models.Model):
