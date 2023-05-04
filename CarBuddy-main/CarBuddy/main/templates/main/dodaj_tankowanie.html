@@ -1,0 +1,9 @@
+{% extends 'main/base.html' %} {% block title %}Dodaj tankowanie{% endblock %} 
+{% block content %}
+  <h2>Dodaj nowe tankowanie:</h2>
+  <form  method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Zapisz tankowanie</button>
+  </form>
+{% endblock %}
