@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import Post
 from .models import Samochody
 from .models import Tankowania
+from .models import Wydatki
 from django.utils import timezone
 from django.forms.widgets import NumberInput
 
@@ -43,12 +44,6 @@ class TankowanieForm(forms.ModelForm):
             'cena_za_litr': 'Cena za litr',
             'samochod': 'Samochód'
         }
-class TankowanieForm(forms.ModelForm):
-    ostatni_przebieg = forms.IntegerField(widget=NumberInput(attrs={'readonly': 'readonly'}), required=False)
-
-    class Meta:
-        model = Tankowania
-        fields = ['samochod', 'data', 'przebieg', 'ilość_paliwa', 'cena_za_litr']
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user')
@@ -60,10 +55,26 @@ class TankowanieForm(forms.ModelForm):
             ostatnie_tankowanie = Tankowania.objects.filter(samochod=samochod).order_by('-data').first()
             if ostatnie_tankowanie:
                 self.fields['ostatni_przebieg'].initial = ostatnie_tankowanie.przebieg
-
+                
     def clean_przebieg(self):
         przebieg = self.cleaned_data['przebieg']
         ostatni_przebieg = self.cleaned_data['ostatni_przebieg']
         if ostatni_przebieg and przebieg < ostatni_przebieg:
             raise forms.ValidationError("Przebieg nie może być mniejszy niż ostatni przebieg: {}".format(ostatni_przebieg))
         return przebieg
+class WydatkiForm(forms.ModelForm):
+    class Meta:
+        model = Wydatki
+        fields = ['data', 'opis', 'koszt','samochod']
+        labels = {
+            'samochod': 'Samochód',
+            'data': 'Data',
+            'opis': 'Opis',
+            'koszt': 'koszt'
+        }
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
+        super().__init__(*args, **kwargs)
+        self.fields['samochod'].queryset = Samochody.objects.filter(author=user)
+        self.fields['data'].widget.attrs['value'] = timezone.now().strftime('%Y-%m-%d')
+        

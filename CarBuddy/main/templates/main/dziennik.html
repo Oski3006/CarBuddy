@@ -16,7 +16,7 @@
       <li>Rok Produkcji: <b>{{ samochod.rok_produkcji }}</b></li> 
       <li>Pojemność silnik:<b>{{ samochod.pojemność_silnika}}</b></li>
       <hr style="border: 1px solid black; margin-top: 20px; margin-bottom: 20px;">
-      <h3>Tankowania:</h3><a href="{% url 'dodaj_tankowanie' samochod.id %}?next={{ request.path }}">dodaj tankowanie</a>
+      <h3>Tankowania:</h3><a href="{% url 'dodaj_tankowanie' samochod.id %}?next={{ request.path }}" class="btn btn-primary">dodaj tankowanie</a>
         {% for tankowanie in tankowania %}
           {% if tankowanie.samochod == samochod %}
 
@@ -29,7 +29,22 @@
         {% empty %}
           <li>Brak tankowań</li>
         {% endfor %}
+        
         <hr style="border: 5px solid black; margin-top: 20px; margin-bottom: 20px;">
+        <h3>Wydatki:</h3><a href="{% url 'dodaj_wydatki' samochod.pk %}" class="btn btn-primary">Dodaj wydatek</a>
+        {% for wydatek in wydatki %}
+          {% if wydatek.samochod == samochod %}
+            <li>Data wydatku: <b>{{ wydatek.data }}</b></li>
+            <li>Opis: <b>{{ wydatek.opis }}</b></li>
+            <li>Kwota: <b>{{ wydatek.koszt }}</b></li>
+            <form method="post" action="{% url 'usun_wydatek' wydatek.id %}">
+              {% csrf_token %}
+              <a type="submit" class="btn btn-primary">Usuń Wydatek </a>
+          </form>
+          {% endif %} 
+          {% empty %}
+            <li>Brak wydatków</li>
+          {% endfor %}
     {% endfor %}
     
   </ul>
