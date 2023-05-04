@@ -11,6 +11,7 @@ from django.http import HttpResponse
 
 
 
+
 @login_required(login_url="/login")
 def home(request):
     posts = Post.objects.all()
@@ -113,7 +114,5 @@ def samochody_uzytkownika(request):
 
 def ctcb(request):
     return render(request, 'main/ctcb.html')
-
-
 
 
