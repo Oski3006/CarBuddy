@@ -87,17 +87,32 @@ def dodaj_samochod(request):
 
 def dodaj_tankowanie(request, samochod_id):
     samochod = get_object_or_404(Samochody, id=samochod_id, author=request.user)
+    ostatnie_tankowanie = Tankowania.objects.filter(samochod=samochod).order_by('-data').first()
+    
     if request.method == 'POST':
         form = TankowanieForm(request.POST, user=request.user, initial={'samochod': samochod})
         if form.is_valid():
             tankowanie = form.save(commit=False)
             tankowanie.save()
-            return redirect('dodaj_tankowanie', samochod_id=samochod_id)
+            form = TankowanieForm(user=request.user, initial={'samochod': samochod})
+            if ostatnie_tankowanie:
+                form.initial = {'przebieg': ostatnie_tankowanie.przebieg,
+                                'ilość_paliwa': ostatnie_tankowanie.ilość_paliwa,
+                                'cena_za_litr': ostatnie_tankowanie.cena_za_litr,
+                                'samochod': samochod}
+            return render(request, 'main/dodaj_tankowanie.html', {'form': form, 'samochod': samochod})
         else:
             print(form.errors)
     else:
         form = TankowanieForm(user=request.user, initial={'samochod': samochod})
+        if ostatnie_tankowanie:
+            form.initial = {'przebieg': ostatnie_tankowanie.przebieg,
+                            'ilość_paliwa': ostatnie_tankowanie.ilość_paliwa,
+                            'cena_za_litr': ostatnie_tankowanie.cena_za_litr,
+                            'samochod': samochod}
     return render(request, 'main/dodaj_tankowanie.html', {'form': form, 'samochod': samochod})
+
+
 
 def samochody_uzytkownika(request):
     samochody = Samochody.objects.filter(author=request.user)
@@ -134,8 +149,9 @@ def dodaj_wydatki(request, samochod_id):
 
 
 
-
 def usun_wydatek(request, pk):
     wydatek = get_object_or_404(Wydatki, pk=pk)
     wydatek.delete()
     return redirect('dziennik')
+
+

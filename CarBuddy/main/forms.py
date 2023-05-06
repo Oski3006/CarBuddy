@@ -36,33 +36,32 @@ class SamochodyForm(forms.ModelForm):
 class TankowanieForm(forms.ModelForm):
     class Meta:
         model = Tankowania
-        fields = ['data', 'przebieg', 'ilość_paliwa','cena_za_litr','samochod']
-        labels = {
-            'data': 'Data',
-            'przebieg': 'Przebieg',
-            'ilość_paliwa': 'Ilość Paliwa',
-            'cena_za_litr': 'Cena za litr',
-            'samochod': 'Samochód'
-        }
-
+        fields = ['samochod', 'data', 'przebieg', 'ilość_paliwa', 'cena_za_litr']
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user')
         super().__init__(*args, **kwargs)
         self.fields['samochod'].queryset = Samochody.objects.filter(author=user)
         self.fields['data'].widget.attrs['value'] = timezone.now().strftime('%Y-%m-%d')
-        if 'instance' in kwargs:
-            samochod = kwargs['instance'].samochod
-            ostatnie_tankowanie = Tankowania.objects.filter(samochod=samochod).order_by('-data').first()
+
+        # Pobranie ostatnich danych tankowania dla danego samochodu
+        samochod = self.initial.get('samochod')
+        if samochod:
+            ostatnie_tankowanie = Tankowania.objects.filter(samochod=samochod).order_by('-data').last()
             if ostatnie_tankowanie:
-                self.fields['ostatni_przebieg'].initial = ostatnie_tankowanie.przebieg
+                self.fields['przebieg'].initial = ostatnie_tankowanie.przebieg
+                self.fields['ilość_paliwa'].initial = ostatnie_tankowanie.ilość_paliwa
+                self.fields['cena_za_litr'].initial = ostatnie_tankowanie.cena_za_litr
 
     def clean_przebieg(self):
         przebieg = self.cleaned_data['przebieg']
-        ostatni_przebieg = self.cleaned_data['ostatni_przebieg']
+        ostatni_przebieg = self.initial.get('przebieg')
         if ostatni_przebieg and przebieg < ostatni_przebieg:
             raise forms.ValidationError("Przebieg nie może być mniejszy niż ostatni przebieg: {}".format(ostatni_przebieg))
         return przebieg
+
+
+
 class WydatkiForm(forms.ModelForm):
     class Meta:
         model = Wydatki
