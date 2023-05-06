@@ -6,20 +6,20 @@
 body {
 	font-family: 'Jura', sans-serif;
 	font-family: 'Montserrat', sans-serif;
-	background-color: #f7b42c;
-	background-image: linear-gradient(315deg, #f7b42c 0%, #fc575e 100%);
+	background-color: #46515a;
 }
 /* //nawigacja */
 div {
-	display: inline-block;
+	display: block;
 }
 
 ul.nav.justify-content-center {
 	background-color: #333333bb;
+	border: 2px solid rgba(0, 2, 0, 0.255);
 }
 
 .nav-link {
-	padding: 0 40px;
+	padding: 0 50px;
 	justify-content: center;
 	display: inline-block;
 	text-transform: uppercase;
@@ -32,11 +32,14 @@ ul.nav.justify-content-center {
 	color: #8b3e87;
 }
 img {
+	left: 4px;
+	position: absolute;
 	border-radius: 5px;
-	left: 5px;
+
 	width: 230px;
 }
 /* //header */
+
 .header-img {
 	position: relative;
 	height: 250px;
@@ -45,6 +48,7 @@ img {
 	background-size: cover;
 	background-position: 0 30%;
 }
+
 .header-tekst {
 	position: absolute;
 	top: 50%;
@@ -52,7 +56,7 @@ img {
 	transform: translate(-50%, -50%);
 	color: white;
 	text-align: center;
-	font-weight: lighter;
+	font-size: 25px;
 }
 .header-bg {
 	position: absolute;
@@ -72,7 +76,7 @@ footer {
 	display: flex;
 	flex-direction: row; /* lub column, w zależności od preferencji */
 	justify-content: space-between; /* równomierne rozmieszczenie kolumn */
-	align-items: center; /* wyśrodkowanie w pionie */
+	/* align-items: center; wyśrodkowanie w pionie */
 	background-color: #333333bb;
 	padding: 20px;
 	color: white;
@@ -81,6 +85,10 @@ footer {
 form {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	width: 300px;
+
+	margin: auto;
 }
 
 label {
@@ -111,9 +119,10 @@ button[type='submit']:hover {
 	background-color: #3e8e41;
 }
 footer {
+	margin-top: 10px;
+	padding: 10 px;
 	text-align: center; /* wyśrodkowanie stopki */
-	background-color: #b;
-	padding: 20px;
+	text-align: justify;
 }
 
 .column {
@@ -133,4 +142,213 @@ footer {
 	font-size: 10px;
 	line-height: 1.5;
 	margin-bottom: 20px;
+	text-align: justify;
 }
+
+div.container {
+	margin-top: 0px;
+	text-align: center;
+
+	border-radius: 10px;
+	padding: 10px;
+	background-color: #46515a;
+	text-transform: uppercase;
+	color: white;
+	opacity: 0.9;
+}
+
+a {
+	color: #0d6efd;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: 700;
+}
+a:hover {
+	color: #8b3e87;
+	transition: color 0.15s;
+}
+
+p.centered-text {
+	text-align: center;
+}
+a.nav-link-1 {
+	justify-content: left;
+}
+
+div.column {
+	text-align: center;
+	width: 100%;
+	font-size: xx-small;
+}
+
+main {
+	margin: 50px auto;
+}
+
+main h2 {
+	margin-bottom: 30px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.about-us-box {
+	margin: 40px 0;
+	overflow: hidden;
+}
+.CarBuddy {
+	position: relative;
+	height: 300px;
+	background-image: url('../static/header\ \(3\).jpg');
+	background-attachment: fixed;
+	background-position: center;
+	border-top-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+}
+.Dodawanie {
+	position: relative;
+	height: 300px;
+	background-image: url('../static/Dodaj.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	border-top-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+	list-style-type: none;
+}
+.Wyświetlanie {
+	position: relative;
+	height: 300px;
+	background-image: url('../static/Wyswietlanie.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	border-top-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+	list-style-type: none;
+}
+.Statystyki {
+	position: relative;
+	height: 300px;
+	background-image: url('../static/zegary.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	border-top-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+	list-style-type: none;
+}
+.Autoryzacja {
+	position: relative;
+	height: 300px;
+	background-image: url('../static/logo2.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	border-top-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+}
+.about-us-text {
+	position: absolute;
+	bottom: 0px;
+	padding: 0px 20px;
+	text-align: center;
+	color: #fff;
+}
+.about-us-bg {
+	position: absolute;
+	bottom: 0;
+	height: 60%;
+	width: 100%;
+	background-color: rgb(0, 0, 0, 0.8);
+}
+
+.Dodawanie li {
+	list-style-type: none;
+}
+
+.Wyświetlanie li {
+	list-style-type: none;
+}
+
+.Statystyki li {
+	list-style-type: none;
+}
+.Autoryzacja li {
+	list-style-type: none;
+}
+.Lista {
+	text-decoration: double;
+	padding: 5x;
+}
+
+.Lista li {
+	list-style-type: none;
+}
+
+.btn-primary {
+	padding: 5px 5px;
+	background-color: #4caf50;
+	color: #fff;
+	font-size: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	
+}
+.btn-primary:hover
+{
+	font-size: 20px;
+	background-color: #3e8e41;
+}
+.Lista li:hover{
+	font-size: 30px;
+}
+
+div .Lista:hover{
+	background-color: #201f1f93;
+
+}
+div .Lista h3:hover{
+	font-size: 50px;
+	background-color: rgba(255, 0, 0, 0.456);
+}
+button {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: bold;
+  }
+  label{
+	display: block;
+	width: 300px;
+	font-size: 12px;
+	font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+
+  }
+  input{
+	width: 300px;
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+
+  }
+
+  textarea{
+	height: 200px;
+	width: 300px;
+	font-size: 13px;
+	
+	padding: 10px;
+  }
+  input:hover{
+	font-size: 25px;
+border-radius: 5px;
+  }
+  textarea:hover{
+	font-size: 15px;
+	font-weight: bold;
+  }
+  button:hover{
+	font-size: 20px;
+  }
+
+
+  select:hover{
+	font-size: 25px;
+  }

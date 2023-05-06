@@ -8,13 +8,17 @@
 
 
 {% block content %}
-  <h3>Lista samochodów</h3>
+<div class="Lista">
+  <h1><span style=";background-color: #333333bb;border-radius: 5px;border: 1px solid black; padding: 2px;"><strong>Lista samochodów</strong></span></h1>
+  <hr style="border: 1px solid black; margin-top: 20px; margin-bottom: 20px;">
   <ul>
     {% for samochod in samochody  %}
-      <h1>{{ samochod.marka }} {{ samochod.model }} </h1>
+      <h3>{{ samochod.marka }} {{ samochod.model }} </h3>
       <li>Numer rejestracyjny: <b>{{ samochod.nr_rejestracyjny}}</b></li>
       <li>Rok Produkcji: <b>{{ samochod.rok_produkcji }}</b></li> 
       <li>Pojemność silnik:<b>{{ samochod.pojemność_silnika}}</b></li>
+  </div>
+  <div class="Lista">
       <hr style="border: 1px solid black; margin-top: 20px; margin-bottom: 20px;">
       <h3>Tankowania:</h3><a href="{% url 'dodaj_tankowanie' samochod.id %}?next={{ request.path }}" class="btn btn-primary">dodaj tankowanie</a>
         {% for tankowanie in tankowania %}
@@ -24,13 +28,14 @@
             <li>Przebieg przy tankowaniu: <b>{{ tankowanie.przebieg }}</b></li>
             <li>Ilość zatankowanego paliwa: <b>{{ tankowanie.ilość_paliwa }}</b></li>
             <li>Cena za litr: <b>{{ tankowanie.cena_za_litr }}</b></li>
+        
           {% endif %}
 
         {% empty %}
           <li>Brak tankowań</li>
         {% endfor %}
         
-        <hr style="border: 5px solid black; margin-top: 20px; margin-bottom: 20px;">
+        <hr style="border: 1px solid black; margin-top: 20px; margin-bottom: 20px;">
         <h3>Wydatki:</h3><a href="{% url 'dodaj_wydatki' samochod.pk %}" class="btn btn-primary">Dodaj wydatek</a>
         {% for wydatek in wydatki %}
           {% if wydatek.samochod == samochod %}
@@ -46,6 +51,6 @@
             <li>Brak wydatków</li>
           {% endfor %}
     {% endfor %}
-    
+  </div>
   </ul>
 {% endblock %}

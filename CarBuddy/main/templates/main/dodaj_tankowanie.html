@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %} {% block title %}Dodaj tankowanie{% endblock %} 
 {% block content %}
-  <h2>Dodaj nowe tankowanie:</h2>
+  <h2><span style=";background-color: #333333bb;border-radius: 5px;border: 1px solid black; padding: 2px;"><strong>Dodaj nowe tankowanie:</strong></span></h2>
   <form  method="post">
     {% csrf_token %}
     {{ form.as_p }}
