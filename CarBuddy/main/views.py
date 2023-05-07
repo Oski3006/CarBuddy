@@ -78,7 +78,7 @@ def dodaj_samochod(request):
             samochod = form.save(commit=False)
             samochod.author = request.user
             samochod.save()
-            return redirect('dodaj_samochod')
+            return redirect('dziennik')
         else:
             print(form.errors)
     else:
@@ -152,6 +152,11 @@ def dodaj_wydatki(request, samochod_id):
 def usun_wydatek(request, pk):
     wydatek = get_object_or_404(Wydatki, pk=pk)
     wydatek.delete()
+    return redirect('dziennik')
+
+def usun_tankowanie(request, pk):
+    tankowanie = get_object_or_404(Tankowania, pk=pk)
+    tankowanie.delete()
     return redirect('dziennik')
 
 

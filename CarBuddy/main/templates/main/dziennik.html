@@ -21,35 +21,65 @@
   <div class="Lista">
       <hr style="border: 1px solid black; margin-top: 20px; margin-bottom: 20px;">
       <h3>Tankowania:</h3><a href="{% url 'dodaj_tankowanie' samochod.id %}?next={{ request.path }}" class="btn btn-primary">dodaj tankowanie</a>
+      <table>
+        <tr>
+          <td>Data tankowania: </td>
+            <td>Przebieg przy tankowaniu: </td>
+              <td>Ilość zatankowanego paliwa: </td>
+                <td>Cena za litr: </td>
+
+        </tr>
         {% for tankowanie in tankowania %}
           {% if tankowanie.samochod == samochod %}
-
-            <li>Data tankowania: <b>{{ tankowanie.data }}</b></li>
-            <li>Przebieg przy tankowaniu: <b>{{ tankowanie.przebieg }}</b></li>
-            <li>Ilość zatankowanego paliwa: <b>{{ tankowanie.ilość_paliwa }}</b></li>
-            <li>Cena za litr: <b>{{ tankowanie.cena_za_litr }}</b></li>
-        
+          
+              <tr>
+            <td><b>{{ tankowanie.data }}</b></td>
+            <td><b>{{ tankowanie.przebieg }}</b></td>
+            <td><b>{{ tankowanie.ilość_paliwa }}</b></td>
+            <td><b>{{ tankowanie.cena_za_litr }}</b></td>
+            <td><form method="post" action="{% url 'usun_tankowanie' tankowanie.id %}">
+              {% csrf_token %}
+              <button type="submit">Usuń Tankowanie </button></td>
+          </form>
+        </tr>
           {% endif %}
 
         {% empty %}
           <li>Brak tankowań</li>
         {% endfor %}
-        
+        <tr>
+            
+        </tr>
+      </table>
         <hr style="border: 1px solid black; margin-top: 20px; margin-bottom: 20px;">
         <h3>Wydatki:</h3><a href="{% url 'dodaj_wydatki' samochod.pk %}" class="btn btn-primary">Dodaj wydatek</a>
+        <table style= "width: 100%">
+          <tr>
+
+            <td> Data wydatku:</td>
+            <td> Opis: </td>
+             <td>Kwota: </td>
+          </tr>
         {% for wydatek in wydatki %}
           {% if wydatek.samochod == samochod %}
-            <li>Data wydatku: <b>{{ wydatek.data }}</b></li>
-            <li>Opis: <b>{{ wydatek.opis }}</b></li>
-            <li>Kwota: <b>{{ wydatek.koszt }}</b></li>
-            <form method="post" action="{% url 'usun_wydatek' wydatek.id %}">
-              {% csrf_token %}
-              <button type="submit">Usuń Wydatek </button>
-          </form>
+            <tr>
+              <td><b>{{ wydatek.data }}</b></td>
+            <td><b>{{ wydatek.opis }}</b></td>
+             <td><b>{{ wydatek.koszt }}</b></td>
+             
+          
+          <td><form method="post" action="{% url 'usun_wydatek' wydatek.id %}">
+            {% csrf_token %}
+            
+            <button type="submit">Usuń Wydatek </button>
+          </form></td>
+        </tr>
           {% endif %} 
           {% empty %}
             <li>Brak wydatków</li>
           {% endfor %}
+      </table>
+          <hr style="border: 3px solid black; margin-top: 20px; margin-bottom: 20px;">
     {% endfor %}
   </div>
   </ul>

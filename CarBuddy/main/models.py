@@ -45,6 +45,7 @@ class Tankowania(models.Model):
     ilość_paliwa = models.DecimalField(max_digits=6, decimal_places=2)
     cena_za_litr = models.DecimalField(max_digits=4, decimal_places=2)
     samochod = models.ForeignKey(Samochody, on_delete=models.CASCADE)
+    
 
 class Wydatki(models.Model):
     id = models.AutoField(primary_key=True)
